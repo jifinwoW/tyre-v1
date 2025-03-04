@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://dentalpal.in/mezroc/assets/img/favicon.png"
+      rel="icon"
+    />
+    <link
+      href="https://dentalpal.in/mezroc/ssets/img/apple-touch-icon.png"
+      rel="apple-touch-icon"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <title>Premium Tyre Collection</title>
+    <style>
+      @font-face {
+        font-family: "Gotham Bold";
+        src: url("fonts-file/Gotham-Bold.woff2") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Gotham Light";
+        src: url("fonts-file/Gotham-Light.woff2") format("woff2");
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Gotham Medium";
+        src: url("fonts-file/Gotham-Medium_1.woff2") format("woff2");
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "Gotham Thin";
+        src: url("fonts-file/Gotham-Thin.woff2") format("woff2");
+        font-weight: 100;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: "ZingRustDemo Base";
+        src: url("fonts-file/ZingRustDemo-Base.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+      }
+      :root {
+        --dark-bg: #0f172a;
+        --accent: #f59e0b;
+        --light: #e2e8f0;
+        --navy: #1e293b;
+      }
+      body,
+      html {
+        overflow-x: hidden;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        font-family: "Gotham Light", sans-serif;
+      }
+      .low {
+        background: linear-gradient(
+            rgba(15, 23, 42, 0.9),
+            rgba(15, 23, 42, 0.9)
+          ),
+          url("A4_Bifold\ brochure_v4_page-0001.jpg") center/cover fixed;
+        color: var(--light);
+        perspective: 1000px;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "ZingRustDemo Base", serif;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden; /* Ensures the border-radius applies to the whole table */
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        color: #000;
+        padding: 1rem;
+        text-align: left;
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+      }
+
+      th {
+        background-color: #3498db; /* Blue header background */
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* Zebra-striping with a gradient */
+      tbody tr:nth-child(even) {
+        background: linear-gradient(to right, #f9f9f9, #f0f0f0);
+      }
+
+      /* Hover effect with a darker gradient */
+      tbody tr:hover {
+        background: linear-gradient(to right, #e6f2ff, #d9e6f2);
+      }
+
+      /* Add a subtle border to the table cells */
+      td {
+        border: 1px solid #eee;
+      }
+
+      /* Loading Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--dark-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeOut 1s forwards 1s;
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      .loader {
+        border: 4px solid var(--accent);
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Content Animations */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product-section {
+        max-width: 1400px;
+        margin: 4rem auto;
+        padding: 2rem;
+      }
+
+      .product-container {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        margin-bottom: 8rem;
+      }
+
+      .image-slider {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        transform: perspective(1000px);
+      }
+
+      .main-image-container {
+        position: relative;
+        overflow: hidden;
+        height: 500px;
+      }
+
+      .main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-out;
+        transform-origin: center center;
+        will-change: transform;
+      }
+
+      .magnifier {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 3px solid rgba(245, 158, 11, 0.8);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(2px);
+        pointer-events: none;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+        transition: opacity 0.2s, transform 0.2s;
+      }
+
+      .main-image-container:hover .magnifier {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* For Mobile Devices */
+      @media (hover: none) {
+        .main-image:hover {
+          transform: scale(1);
+          filter: brightness(0.9);
+        }
+      }
+
+      .main-image.loaded {
+        opacity: 1;
+      }
+
+      .thumbnails {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--navy);
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .thumbnail.active {
+        border-color: var(--accent);
+      }
+
+      .product-details {
+        padding: 2rem;
+      }
+
+      .product-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to right, var(--accent), #fcd34d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .spec-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      .spec-card {
+        padding: 1.5rem;
+        background: var(--navy);
+        border-radius: 8px;
+        border-left: 4px solid var(--accent);
+        transition: all 0.3s ease;
+      }
+
+      .features-list {
+        margin: 2rem 0;
+        list-style: none;
+      }
+
+      .feature-item {
+        padding: 1rem;
+        margin: 0.5rem 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+      }
+
+      @media (max-width: 768px) {
+        .product-container {
+          grid-template-columns: 1fr;
+        }
+        .product-section {
+          max-width: 1400px;
+          margin: 4rem auto;
+          padding: 10px;
+        }
+        .product-details {
+          padding: 10px;
+        }
+        .spec-card {
+          padding: 10px;
+          background: var(--navy);
+          border-radius: 8px;
+          border-left: 4px solid var(--accent);
+          transition: all 0.3sease;
+        }
+        .main-image-container {
+          position: relative;
+          overflow: hidden;
+          height: auto;
+          max-height: 500px;
+        }
+
+        .main-image {
+          height: 300px;
+        }
+        .hero img {
+          width: 100%;
+          height: auto;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto; /* Enable horizontal scrolling */
+          white-space: nowrap; /* Prevent wrapping */
+        }
+      }
+      .hero {
+        min-height: 400px; /* Adjust as needed */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="loader"></div>
+    </div>
+
+    <div class="hero">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="sec1.jpg" alt="" />
+        </div>
+        <div class="col-md-6">
+          <img src="sec2.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="low">
+      <section class="product-section">
+        <div class="product-container">
+          <div class="image-slider animate-on-scroll">
+            <div class="main-image-container">
+              <img src="tyre1.jpeg" class="main-image" alt="Tyre 1" />
+              <div class="magnifier"></div>
+            </div>
+            <div class="thumbnails">
+              <img
+                src="tyre1.jpeg"
+                class="thumbnail active"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre0.webp"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre0.webp"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+            </div>
+          </div>
+
+          <div
+            class="product-details animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            <h1 class="product-title">SOLID RESILIENT TIRES</h1>
+            <p class="product-description">
+              Maximum stability, safety and durability Long-lasting performance
+              with high loading capacity Excellent traction and puncture
+              resistance
+            </p>
+
+            <div class="spec-grid">
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.3s"
+              >
+                <h3>Tire Type</h3>
+                <p>Black, Non-Lip</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.4s"
+              >
+                <h3>Suitable Rim type</h3>
+                <p>3 piece, 4 piece, 2 piece-split</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.5s"
+              >
+                <h3>No. of Layers</h3>
+                <p>3</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Beads</h3>
+                <p>Yes</p>
+              </div>
+            </div>
+
+            <ul class="features-list">
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.7s"
+              >
+                Maximum stability
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.8s"
+              >
+                safety and durability
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                Long-lasting performance with high loading capacity
+              </li>
+            </ul>
+          </div>
+        </div>
+        <h2 style="text-align: center">SOLID RESILIENT TIRES SIZES</h2>
+        <br />
+        <table>
+          <thead>
+            <tr>
+              <th>SL NO.</th>
+              <th>TIRE SIZE</th>
+              <th>TIRE SIZE (Alternative)</th>
+              <th colspan="2">TIRE DIMENSIONS (MM)</th>
+              <th colspan="3">
+                LOAD CAPACITY (KG) - Counterbalanced Lift Truck (Up to 25 KMPH)
+              </th>
+              <th colspan="3">LOAD CAPACITY (KG) - Other Vehicles</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>OD</th>
+              <th>SW</th>
+              <th>LOAD WHEEL</th>
+              <th>STEER WHEEL</th>
+              <th>UPTO 6 KMPH</th>
+              <th>UPTO 10 KMPH</th>
+              <th>UPTO 25 KMPH</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>18X7-8</td>
+              <td>4.33R-8</td>
+              <td>454</td>
+              <td>156</td>
+              <td>2145</td>
+              <td>1650</td>
+              <td>2145</td>
+              <td>1945</td>
+              <td>1650</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>5.00-8</td>
+              <td>3.00D-8</td>
+              <td>459</td>
+              <td>115</td>
+              <td>1415</td>
+              <td>1090</td>
+              <td>1415</td>
+              <td>1285</td>
+              <td>1090</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>16X6-8</td>
+              <td>4.33R-8</td>
+              <td>411</td>
+              <td>152</td>
+              <td>1495</td>
+              <td>1150</td>
+              <td>1495</td>
+              <td>1350</td>
+              <td>1150</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>6.00-9</td>
+              <td>4.00E-09</td>
+              <td>519</td>
+              <td>331</td>
+              <td>1885</td>
+              <td>1450</td>
+              <td>1885</td>
+              <td>1710</td>
+              <td>1450</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>21X8-9</td>
+              <td>6.00E-09</td>
+              <td>517</td>
+              <td>787</td>
+              <td>2755</td>
+              <td>2120</td>
+              <td>2755</td>
+              <td>2500</td>
+              <td>2120</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>23X9-10</td>
+              <td>6.50F-10</td>
+              <td>578</td>
+              <td>202</td>
+              <td>3445</td>
+              <td>2650</td>
+              <td>3445</td>
+              <td>3125</td>
+              <td>2650</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>6.50-10</td>
+              <td>5.00F-10</td>
+              <td>566</td>
+              <td>165</td>
+              <td>2340</td>
+              <td>1800</td>
+              <td>2340</td>
+              <td>2125</td>
+              <td>1800</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>27X10-12</td>
+              <td>8.00D-12</td>
+              <td>670</td>
+              <td>235</td>
+              <td>3900</td>
+              <td>3000</td>
+              <td>3900</td>
+              <td>3440</td>
+              <td>3000</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>7.00-12</td>
+              <td>5.00S-12</td>
+              <td>650</td>
+              <td>170</td>
+              <td>2920</td>
+              <td>2240</td>
+              <td>2920</td>
+              <td>2645</td>
+              <td>2240</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>23X10-12</td>
+              <td>8.00D-12</td>
+              <td>586</td>
+              <td>234</td>
+              <td>3770</td>
+              <td>2900</td>
+              <td>3770</td>
+              <td>3420</td>
+              <td>2900</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>8.25-15</td>
+              <td>6.50-15</td>
+              <td>823</td>
+              <td>202</td>
+              <td>4750</td>
+              <td>3650</td>
+              <td>4750</td>
+              <td>4300</td>
+              <td>3650</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>8.15-15</td>
+              <td>7.00-15</td>
+              <td>687</td>
+              <td>224</td>
+              <td>3900</td>
+              <td>3000</td>
+              <td>3900</td>
+              <td>3540</td>
+              <td>3000</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>7.00-15</td>
+              <td>5.50-15</td>
+              <td>722</td>
+              <td>180</td>
+              <td>3545</td>
+              <td>2725</td>
+              <td>3545</td>
+              <td>3215</td>
+              <td>2725</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>7.50-15</td>
+              <td>6.00-15</td>
+              <td>752</td>
+              <td>199</td>
+              <td>3900</td>
+              <td>3000</td>
+              <td>3900</td>
+              <td>3540</td>
+              <td>3000</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container">
+          <div class="image-slider animate-on-scroll">
+            <div class="main-image-container">
+              <img src="tyre0.webp" class="main-image" alt="Tyre 2" />
+              <div class="magnifier"></div>
+            </div>
+            <div class="thumbnails">
+              <img
+                src="tyre0.webp"
+                class="thumbnail active"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre1.jpeg"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre1.jpeg"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+            </div>
+          </div>
+
+          <div
+            class="product-details animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            <h1 class="product-title">Road Voyager</h1>
+            <p class="product-description">
+              Long-lasting tyre for extended highway journeys
+            </p>
+
+            <div class="spec-grid">
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.3s"
+              >
+                <h3>Size</h3>
+                <p>225/60 R18 100H</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.4s"
+              >
+                <h3>Wet Grip</h3>
+                <p>Class B</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.5s"
+              >
+                <h3>Noise</h3>
+                <p>70 dB</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Load Index</h3>
+                <p>100 (800 kg)</p>
+              </div>
+            </div>
+
+            <ul class="features-list">
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.7s"
+              >
+                Durable tread compound
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.8s"
+              >
+                Enhanced stability at high speeds
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                6-year mileage warranty
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container">
+          <div class="image-slider animate-on-scroll">
+            <div class="main-image-container">
+              <img
+                src="tyre1.jpeg"
+                class="main-image"
+                alt="All Terrain Master"
+              />
+              <div class="magnifier"></div>
+            </div>
+            <div class="thumbnails">
+              <img
+                src="tyre1.jpeg"
+                class="thumbnail active"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre0.webp"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+              <img
+                src="tyre0.webp"
+                class="thumbnail"
+                onclick="changeImage(this.closest('.product-section'), this)"
+              />
+            </div>
+          </div>
+
+          <div
+            class="product-details animate-on-scroll"
+            style="transition-delay: 0.2s"
+          >
+            <h1 class="product-title">All Terrain Master</h1>
+            <p class="product-description">
+              Rugged tyre for off-road adventures and challenging terrains
+            </p>
+
+            <div class="spec-grid">
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.3s"
+              >
+                <h3>Size</h3>
+                <p>265/70 R17 121S</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.4s"
+              >
+                <h3>Wet Grip</h3>
+                <p>Class C</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.5s"
+              >
+                <h3>Noise</h3>
+                <p>72 dB</p>
+              </div>
+              <div
+                class="spec-card animate-on-scroll"
+                style="transition-delay: 0.6s"
+              >
+                <h3>Load Index</h3>
+                <p>121 (1450 kg)</p>
+              </div>
+            </div>
+
+            <ul class="features-list">
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.7s"
+              >
+                Aggressive tread pattern
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.8s"
+              >
+                Reinforced sidewalls for puncture resistance
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                4-year off-road warranty
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.addEventListener("load", () => {
+        document.querySelector(".loading").style.display = "none";
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document.querySelectorAll(".animate-on-scroll").forEach((element) => {
+        observer.observe(element);
+      });
+
+      function changeImage(section, thumb) {
+        const thumbnails = section.querySelectorAll(".thumbnail");
+        const mainImage = section.querySelector(".main-image");
+
+        thumbnails.forEach((t) => t.classList.remove("active"));
+        thumb.classList.add("active");
+
+        mainImage.style.opacity = 0;
+        setTimeout(() => {
+          mainImage.src = thumb.src;
+          mainImage.style.opacity = 1;
+        }, 300);
+      }
+
+      document.querySelectorAll(".main-image").forEach((img) => {
+        img.addEventListener("load", () => {
+          img.classList.add("loaded");
+        });
+      });
+
+      const imageContainers = document.querySelectorAll(
+        ".main-image-container"
+      );
+      imageContainers.forEach((imageContainer) => {
+        const magnifier = imageContainer.querySelector(".magnifier");
+        const mainImage = imageContainer.querySelector(".main-image");
+
+        const zoomLevel = 2;
+
+        imageContainer.addEventListener("mousemove", (e) => {
+          const { left, top, width, height } =
+            imageContainer.getBoundingClientRect();
+          const x = e.clientX - left;
+          const y = e.clientY - top;
+
+          magnifier.style.left = `${x}px`;
+          magnifier.style.top = `${y}px`;
+          magnifier.style.opacity = 1; //Ensure Magnifier is visible on every mouse move
+
+          const percentX = (x / width) * 100;
+          const percentY = (y / height) * 100;
+
+          mainImage.style.transformOrigin = `${percentX}% ${percentY}%`;
+          mainImage.style.transform = `scale(${zoomLevel})`;
+        });
+
+        imageContainer.addEventListener("mouseleave", () => {
+          magnifier.style.opacity = 0;
+          mainImage.style.transform = "scale(1)";
+          mainImage.style.transformOrigin = "center center";
+        });
+      });
+    </script>
+  </body>
+</html>
