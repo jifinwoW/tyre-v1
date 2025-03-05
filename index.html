@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
       href="https://dentalpal.in/mezroc/assets/img/favicon.png"
       rel="icon"
     />
@@ -52,10 +56,10 @@
         font-style: normal;
       }
       :root {
-        --dark-bg: #0f172a;
-        --accent: #f59e0b;
+        --dark-bg: #212c3d;
+        --accent: #e79472;
         --light: #e2e8f0;
-        --navy: #1e293b;
+        --navy: #212c3d;
       }
       body,
       html {
@@ -65,17 +69,13 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Inter", sans-serif;
+        font-family: "Gotham Medium", sans-serif;
       }
       body {
-        font-family: "Gotham Light", sans-serif;
+        font-family: "Gotham Medium", sans-serif;
       }
       .low {
-        background: linear-gradient(
-            rgba(15, 23, 42, 0.9),
-            rgba(15, 23, 42, 0.9)
-          ),
-          url("A4_Bifold\ brochure_v4_page-0001.jpg") center/cover fixed;
+        background: #fff;
         color: var(--light);
         perspective: 1000px;
         overflow-x: hidden;
@@ -86,7 +86,12 @@
       h3,
       h4 {
         font-family: "ZingRustDemo Base", serif;
+        color: #2d465e;
       }
+      p {
+        font-size: 16px;
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -107,7 +112,7 @@
       }
 
       th {
-        background-color: #3498db; /* Blue header background */
+        background-color: #2d465e; /* Blue header background */
         color: white;
         font-weight: bold;
         text-transform: uppercase;
@@ -127,6 +132,48 @@
       /* Add a subtle border to the table cells */
       td {
         border: 1px solid #eee;
+      }
+      .accordion {
+        background: linear-gradient(to right, #2d465e, #3a5a78);
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        font-size: 18px;
+
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-family: "ZingRustDemo Base", serif;
+      }
+
+      .accordion:hover {
+        background: linear-gradient(to right, #243b50, #2d465e);
+      }
+
+      .accordion i {
+        font-size: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .accordion.active i {
+        transform: rotate(90deg);
+      }
+
+      .active:after {
+        transform: rotate(90deg); /* Downward arrow */
+      }
+
+      .panel {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
       }
 
       /* Loading Animation */
@@ -151,6 +198,9 @@
         justify-content: center;
         z-index: 1000;
         animation: fadeOut 1s forwards 1s;
+      }
+      .spec-card h3 {
+        color: #e2e8f0;
       }
 
       @keyframes fadeOut {
@@ -198,13 +248,15 @@
         margin: 4rem auto;
         padding: 2rem;
       }
-
+      .product-description {
+        color: #1e293b;
+      }
       .product-container {
         display: grid;
         grid-template-columns: 1.2fr 1fr;
         gap: 4rem;
         align-items: center;
-        margin-bottom: 8rem;
+        margin-bottom: 2rem;
       }
 
       .image-slider {
@@ -316,7 +368,7 @@
       .feature-item {
         padding: 1rem;
         margin: 0.5rem 0;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(30, 41, 59, 0.99);
         border-radius: 6px;
       }
 
@@ -359,15 +411,50 @@
           overflow-x: auto; /* Enable horizontal scrolling */
           white-space: nowrap; /* Prevent wrapping */
         }
+        .hero-content {
+          background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+          ); /* Semi-transparent black overlay */
+          padding: 20px 20px;
+          border-radius: 8px;
+        }
       }
       .hero {
+        background-image: url("banner1.jpg"); /* Use your image here */
+        background-size: cover;
+        background-position: center;
         min-height: 400px; /* Adjust as needed */
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: white;
-        position: relative;
+        color: white; /* Text color */
+      }
+
+      .hero-content {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Semi-transparent black overlay */
+        padding: 20px 200px;
+        border-radius: 8px;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+
+        color: #fff;
+      }
+
+      .hero p {
+        font-size: 16px;
+        line-height: 1.6;
       }
     </style>
   </head>
@@ -376,38 +463,47 @@
       <div class="loader"></div>
     </div>
 
-    <div class="hero">
-      <div class="row">
-        <div class="col-md-6">
-          <img src="sec1.jpg" alt="" />
-        </div>
-        <div class="col-md-6">
-          <img src="sec2.jpg" alt="" />
-        </div>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Our Products</h1>
+        <p>
+          Our solid tyres are engineered to deliver unbeatable performance in
+          the toughest working conditions—whether on construction sites, in busy
+          ports, or at industrial warehouses. From forklifts to aerial platform
+          vehicles, we provide the durability and reliability you need to keep
+          your operations running smoothly. With MEZROC, you get tyres that are
+          solid as a rock and built for the long haul, offering unmatched
+          endurance and strength.
+        </p>
+        <ul
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style: none;
+            gap: 10px;
+          "
+        >
+          <li>
+            <a style="color: #fff; text-decoration: none" href="#">Home</a>
+          </li>
+          <li>/</li>
+          <li>Products</li>
+        </ul>
       </div>
-    </div>
+    </section>
     <div class="low">
       <section class="product-section">
         <div class="product-container">
           <div class="image-slider animate-on-scroll">
             <div class="main-image-container">
-              <img src="tyre1.jpeg" class="main-image" alt="Tyre 1" />
+              <img src="Tyre_3_white.jpg" class="main-image" alt="Tyre 1" />
               <div class="magnifier"></div>
             </div>
             <div class="thumbnails">
               <img
-                src="tyre1.jpeg"
+                src="Tyre_3_white.jpg"
                 class="thumbnail active"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre0.webp"
-                class="thumbnail"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre0.webp"
-                class="thumbnail"
                 onclick="changeImage(this.closest('.product-section'), this)"
               />
             </div>
@@ -417,11 +513,13 @@
             class="product-details animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            <h1 class="product-title">SOLID RESILIENT TIRES</h1>
+            <h1 class="product-title">SOLID RESILIENT tyreS</h1>
             <p class="product-description">
-              Maximum stability, safety and durability Long-lasting performance
-              with high loading capacity Excellent traction and puncture
-              resistance
+              The construction of a resilient tyre includes several layers of
+              diƯerent types of rubber compounds. Our solid resilient tyres
+              consist of a tread layer, a middle layer and a base layer with
+              steel bead reinforcements. The benefits include puncture and
+              maintenance free operations, higher life and low cost per hour.
             </p>
 
             <div class="spec-grid">
@@ -429,7 +527,7 @@
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.3s"
               >
-                <h3>Tire Type</h3>
+                <h3>tyre Type</h3>
                 <p>Black, Non-Lip</p>
               </div>
               <div
@@ -474,230 +572,230 @@
               >
                 Long-lasting performance with high loading capacity
               </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                Excellent traction and puncture resistance
+              </li>
             </ul>
           </div>
         </div>
-        <h2 style="text-align: center">SOLID RESILIENT TIRES SIZES</h2>
-        <br />
-        <table>
-          <thead>
-            <tr>
-              <th>SL NO.</th>
-              <th>TIRE SIZE</th>
-              <th>TIRE SIZE (Alternative)</th>
-              <th colspan="2">TIRE DIMENSIONS (MM)</th>
-              <th colspan="3">
-                LOAD CAPACITY (KG) - Counterbalanced Lift Truck (Up to 25 KMPH)
-              </th>
-              <th colspan="3">LOAD CAPACITY (KG) - Other Vehicles</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th>OD</th>
-              <th>SW</th>
-              <th>LOAD WHEEL</th>
-              <th>STEER WHEEL</th>
-              <th>UPTO 6 KMPH</th>
-              <th>UPTO 10 KMPH</th>
-              <th>UPTO 25 KMPH</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>18X7-8</td>
-              <td>4.33R-8</td>
-              <td>454</td>
-              <td>156</td>
-              <td>2145</td>
-              <td>1650</td>
-              <td>2145</td>
-              <td>1945</td>
-              <td>1650</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>5.00-8</td>
-              <td>3.00D-8</td>
-              <td>459</td>
-              <td>115</td>
-              <td>1415</td>
-              <td>1090</td>
-              <td>1415</td>
-              <td>1285</td>
-              <td>1090</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>16X6-8</td>
-              <td>4.33R-8</td>
-              <td>411</td>
-              <td>152</td>
-              <td>1495</td>
-              <td>1150</td>
-              <td>1495</td>
-              <td>1350</td>
-              <td>1150</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>6.00-9</td>
-              <td>4.00E-09</td>
-              <td>519</td>
-              <td>331</td>
-              <td>1885</td>
-              <td>1450</td>
-              <td>1885</td>
-              <td>1710</td>
-              <td>1450</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>21X8-9</td>
-              <td>6.00E-09</td>
-              <td>517</td>
-              <td>787</td>
-              <td>2755</td>
-              <td>2120</td>
-              <td>2755</td>
-              <td>2500</td>
-              <td>2120</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>23X9-10</td>
-              <td>6.50F-10</td>
-              <td>578</td>
-              <td>202</td>
-              <td>3445</td>
-              <td>2650</td>
-              <td>3445</td>
-              <td>3125</td>
-              <td>2650</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>6.50-10</td>
-              <td>5.00F-10</td>
-              <td>566</td>
-              <td>165</td>
-              <td>2340</td>
-              <td>1800</td>
-              <td>2340</td>
-              <td>2125</td>
-              <td>1800</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>27X10-12</td>
-              <td>8.00D-12</td>
-              <td>670</td>
-              <td>235</td>
-              <td>3900</td>
-              <td>3000</td>
-              <td>3900</td>
-              <td>3440</td>
-              <td>3000</td>
-            </tr>
-            <tr>
-              <td>9</td>
-              <td>7.00-12</td>
-              <td>5.00S-12</td>
-              <td>650</td>
-              <td>170</td>
-              <td>2920</td>
-              <td>2240</td>
-              <td>2920</td>
-              <td>2645</td>
-              <td>2240</td>
-            </tr>
-            <tr>
-              <td>10</td>
-              <td>23X10-12</td>
-              <td>8.00D-12</td>
-              <td>586</td>
-              <td>234</td>
-              <td>3770</td>
-              <td>2900</td>
-              <td>3770</td>
-              <td>3420</td>
-              <td>2900</td>
-            </tr>
-            <tr>
-              <td>11</td>
-              <td>8.25-15</td>
-              <td>6.50-15</td>
-              <td>823</td>
-              <td>202</td>
-              <td>4750</td>
-              <td>3650</td>
-              <td>4750</td>
-              <td>4300</td>
-              <td>3650</td>
-            </tr>
-            <tr>
-              <td>12</td>
-              <td>8.15-15</td>
-              <td>7.00-15</td>
-              <td>687</td>
-              <td>224</td>
-              <td>3900</td>
-              <td>3000</td>
-              <td>3900</td>
-              <td>3540</td>
-              <td>3000</td>
-            </tr>
-            <tr>
-              <td>13</td>
-              <td>7.00-15</td>
-              <td>5.50-15</td>
-              <td>722</td>
-              <td>180</td>
-              <td>3545</td>
-              <td>2725</td>
-              <td>3545</td>
-              <td>3215</td>
-              <td>2725</td>
-            </tr>
-            <tr>
-              <td>14</td>
-              <td>7.50-15</td>
-              <td>6.00-15</td>
-              <td>752</td>
-              <td>199</td>
-              <td>3900</td>
-              <td>3000</td>
-              <td>3900</td>
-              <td>3540</td>
-              <td>3000</td>
-            </tr>
-          </tbody>
-        </table>
+        <button class="accordion">
+          SOLID RESILIENT TYRES SIZES<i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="panel">
+          <table>
+            <thead>
+              <tr>
+                <th>SL NO.</th>
+                <th>tyre SIZE</th>
+                <th>tyre SIZE (Alternative)</th>
+                <th colspan="2">tyre DIMENSIONS (MM)</th>
+                <th colspan="3">
+                  LOAD CAPACITY (KG) - Counterbalanced Lift Truck (Up to 25
+                  KMPH)
+                </th>
+                <th colspan="3">LOAD CAPACITY (KG) - Other Vehicles</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>OD</th>
+                <th>SW</th>
+                <th>LOAD WHEEL</th>
+                <th>STEER WHEEL</th>
+                <th>UPTO 6 KMPH</th>
+                <th>UPTO 10 KMPH</th>
+                <th>UPTO 25 KMPH</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>18X7-8</td>
+                <td>4.33R-8</td>
+                <td>454</td>
+                <td>156</td>
+                <td>2145</td>
+                <td>1650</td>
+                <td>2145</td>
+                <td>1945</td>
+                <td>1650</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>5.00-8</td>
+                <td>3.00D-8</td>
+                <td>459</td>
+                <td>115</td>
+                <td>1415</td>
+                <td>1090</td>
+                <td>1415</td>
+                <td>1285</td>
+                <td>1090</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>16X6-8</td>
+                <td>4.33R-8</td>
+                <td>411</td>
+                <td>152</td>
+                <td>1495</td>
+                <td>1150</td>
+                <td>1495</td>
+                <td>1350</td>
+                <td>1150</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>6.00-9</td>
+                <td>4.00E-09</td>
+                <td>519</td>
+                <td>331</td>
+                <td>1885</td>
+                <td>1450</td>
+                <td>1885</td>
+                <td>1710</td>
+                <td>1450</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>21X8-9</td>
+                <td>6.00E-09</td>
+                <td>517</td>
+                <td>787</td>
+                <td>2755</td>
+                <td>2120</td>
+                <td>2755</td>
+                <td>2500</td>
+                <td>2120</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>23X9-10</td>
+                <td>6.50F-10</td>
+                <td>578</td>
+                <td>202</td>
+                <td>3445</td>
+                <td>2650</td>
+                <td>3445</td>
+                <td>3125</td>
+                <td>2650</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>6.50-10</td>
+                <td>5.00F-10</td>
+                <td>566</td>
+                <td>165</td>
+                <td>2340</td>
+                <td>1800</td>
+                <td>2340</td>
+                <td>2125</td>
+                <td>1800</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>27X10-12</td>
+                <td>8.00D-12</td>
+                <td>670</td>
+                <td>235</td>
+                <td>3900</td>
+                <td>3000</td>
+                <td>3900</td>
+                <td>3440</td>
+                <td>3000</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>7.00-12</td>
+                <td>5.00S-12</td>
+                <td>650</td>
+                <td>170</td>
+                <td>2920</td>
+                <td>2240</td>
+                <td>2920</td>
+                <td>2645</td>
+                <td>2240</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>23X10-12</td>
+                <td>8.00D-12</td>
+                <td>586</td>
+                <td>234</td>
+                <td>3770</td>
+                <td>2900</td>
+                <td>3770</td>
+                <td>3420</td>
+                <td>2900</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>8.25-15</td>
+                <td>6.50-15</td>
+                <td>823</td>
+                <td>202</td>
+                <td>4750</td>
+                <td>3650</td>
+                <td>4750</td>
+                <td>4300</td>
+                <td>3650</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>8.15-15</td>
+                <td>7.00-15</td>
+                <td>687</td>
+                <td>224</td>
+                <td>3900</td>
+                <td>3000</td>
+                <td>3900</td>
+                <td>3540</td>
+                <td>3000</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>7.00-15</td>
+                <td>5.50-15</td>
+                <td>722</td>
+                <td>180</td>
+                <td>3545</td>
+                <td>2725</td>
+                <td>3545</td>
+                <td>3215</td>
+                <td>2725</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>7.50-15</td>
+                <td>6.00-15</td>
+                <td>752</td>
+                <td>199</td>
+                <td>3900</td>
+                <td>3000</td>
+                <td>3900</td>
+                <td>3540</td>
+                <td>3000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section class="product-section">
         <div class="product-container">
           <div class="image-slider animate-on-scroll">
             <div class="main-image-container">
-              <img src="tyre0.webp" class="main-image" alt="Tyre 2" />
+              <img src="Tyre_2_white.jpg" class="main-image" alt="Tyre 2" />
               <div class="magnifier"></div>
             </div>
             <div class="thumbnails">
               <img
-                src="tyre0.webp"
+                src="Tyre_2_white.jpg"
                 class="thumbnail active"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre1.jpeg"
-                class="thumbnail"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre1.jpeg"
-                class="thumbnail"
                 onclick="changeImage(this.closest('.product-section'), this)"
               />
             </div>
@@ -707,9 +805,16 @@
             class="product-details animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            <h1 class="product-title">Road Voyager</h1>
+            <h1 class="product-title">Press On Band Tyres</h1>
             <p class="product-description">
-              Long-lasting tyre for extended highway journeys
+              Solid press on tyres, also known as cushion tires, are designed
+              specifically to meet the requirements of tough material handling
+              applications. They are puncture free, highly resistant to wear and
+              oƯer one of the lowest cost of ownership. Press on tyres further
+              enhance forklifts stability, load capacity and service life of
+              equipment. They are made of a rubber tread layer bonded to a
+              cylindrical steel band and then mounted onto a steel hub using a
+              press.
             </p>
 
             <div class="spec-grid">
@@ -717,29 +822,29 @@
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.3s"
               >
-                <h3>Size</h3>
-                <p>225/60 R18 100H</p>
+                <h3>tyre Type</h3>
+                <p>Black</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.4s"
               >
-                <h3>Wet Grip</h3>
-                <p>Class B</p>
+                <h3>Suitable For</h3>
+                <p>Forklifts</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.5s"
               >
-                <h3>Noise</h3>
-                <p>70 dB</p>
+                <h3>No. of Layers</h3>
+                <p>1</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.6s"
               >
-                <h3>Load Index</h3>
-                <p>100 (800 kg)</p>
+                <h3>Tread Pattern</h3>
+                <p>Smooth, Rib, Lug</p>
               </div>
             </div>
 
@@ -748,22 +853,179 @@
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.7s"
               >
-                Durable tread compound
+                Maximum stability
               </li>
               <li
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.8s"
               >
-                Enhanced stability at high speeds
+                Safety and durability
               </li>
               <li
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.9s"
               >
-                6-year mileage warranty
+                Long-lasting performance with high loading capacity
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                Low Rolling Resistance
               </li>
             </ul>
           </div>
+        </div>
+        <button class="accordion">
+          PRESS ON BAND TYRES SIZES<i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="panel">
+          <table>
+            <thead>
+              <tr>
+                <th>SL NO.</th>
+                <th>TIRE SIZE (INCH)</th>
+                <th>TIRE OD (MM)</th>
+                <th>TREAD WIDTH (MM)</th>
+                <th colspan="2">TREAD PATTERN</th>
+                <th colspan="2">
+                  LOAD CAPACITY - COUNTERBALANCED LIFT TRUCK UPTO 16 KMPH
+                </th>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>SMOOTH</th>
+                <th>LUG</th>
+                <th>LOAD WHEEL (KG)</th>
+                <th>STEER WHEEL (KG)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>15X5X11 1/4</td>
+                <td>383</td>
+                <td>127</td>
+                <td>X</td>
+                <td></td>
+                <td>1240</td>
+                <td>1040</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>15X6X11 1/4</td>
+                <td>381</td>
+                <td>152</td>
+                <td>X</td>
+                <td></td>
+                <td>1530</td>
+                <td>1285</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>16X5X10 1/2</td>
+                <td>410</td>
+                <td>100</td>
+                <td>X</td>
+                <td>X</td>
+                <td>1345</td>
+                <td>1130</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>16X6X10 1/2</td>
+                <td>410</td>
+                <td>127</td>
+                <td>X</td>
+                <td>X</td>
+                <td>1710</td>
+                <td>1435</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>16 1/4X5X11 1/4</td>
+                <td>410</td>
+                <td>108</td>
+                <td>X</td>
+                <td></td>
+                <td>1360</td>
+                <td>1145</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>16 1/4X6X11 1/4</td>
+                <td>410</td>
+                <td>127</td>
+                <td>X</td>
+                <td>X</td>
+                <td>1715</td>
+                <td>1440</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>18X6X12 1/8</td>
+                <td>457</td>
+                <td>132</td>
+                <td>X</td>
+                <td>X</td>
+                <td>1870</td>
+                <td>1575</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>18X7X12 1/8</td>
+                <td>457</td>
+                <td>143</td>
+                <td>X</td>
+                <td>X</td>
+                <td>2280</td>
+                <td>1915</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>18X8X12 1/8</td>
+                <td>457</td>
+                <td>172</td>
+                <td>X</td>
+                <td>X</td>
+                <td>2685</td>
+                <td>2255</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>18X9X12 1/8</td>
+                <td>457</td>
+                <td>196</td>
+                <td>X</td>
+                <td>X</td>
+                <td>3090</td>
+                <td>2600</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>21X7X15</td>
+                <td>533</td>
+                <td>145</td>
+                <td></td>
+                <td>X</td>
+                <td>2105</td>
+                <td>1765</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>21X8X15</td>
+                <td>533</td>
+                <td>183</td>
+                <td></td>
+                <td>X</td>
+                <td>2560</td>
+                <td>2150</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -772,7 +1034,7 @@
           <div class="image-slider animate-on-scroll">
             <div class="main-image-container">
               <img
-                src="tyre1.jpeg"
+                src="Tyre_1_white.jpg"
                 class="main-image"
                 alt="All Terrain Master"
               />
@@ -780,18 +1042,8 @@
             </div>
             <div class="thumbnails">
               <img
-                src="tyre1.jpeg"
+                src="Tyre_1_white.jpg"
                 class="thumbnail active"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre0.webp"
-                class="thumbnail"
-                onclick="changeImage(this.closest('.product-section'), this)"
-              />
-              <img
-                src="tyre0.webp"
-                class="thumbnail"
                 onclick="changeImage(this.closest('.product-section'), this)"
               />
             </div>
@@ -801,9 +1053,16 @@
             class="product-details animate-on-scroll"
             style="transition-delay: 0.2s"
           >
-            <h1 class="product-title">All Terrain Master</h1>
+            <h1 class="product-title">Press On Band Tyres (Smooth)</h1>
             <p class="product-description">
-              Rugged tyre for off-road adventures and challenging terrains
+              Solid press on tyres, also known as cushion tires, are designed
+              specifically to meet the requirements of tough material handling
+              applications. They are puncture free, highly resistant to wear and
+              oƯer one of the lowest cost of ownership. Press on tyres further
+              enhance forklifts stability, load capacity and service life of
+              equipment. They are made of a rubber tread layer bonded to a
+              cylindrical steel band and then mounted onto a steel hub using a
+              press.
             </p>
 
             <div class="spec-grid">
@@ -811,29 +1070,29 @@
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.3s"
               >
-                <h3>Size</h3>
-                <p>265/70 R17 121S</p>
+                <h3>tyre Type</h3>
+                <p>Black</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.4s"
               >
-                <h3>Wet Grip</h3>
-                <p>Class C</p>
+                <h3>Suitable For</h3>
+                <p>Forklifts</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.5s"
               >
-                <h3>Noise</h3>
-                <p>72 dB</p>
+                <h3>No. of Layers</h3>
+                <p>1</p>
               </div>
               <div
                 class="spec-card animate-on-scroll"
                 style="transition-delay: 0.6s"
               >
-                <h3>Load Index</h3>
-                <p>121 (1450 kg)</p>
+                <h3>Tread Pattern</h3>
+                <p>Smooth, Rib, Lug</p>
               </div>
             </div>
 
@@ -842,26 +1101,45 @@
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.7s"
               >
-                Aggressive tread pattern
+                Maximum stability
               </li>
               <li
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.8s"
               >
-                Reinforced sidewalls for puncture resistance
+                Safety and durability
               </li>
               <li
                 class="feature-item animate-on-scroll"
                 style="transition-delay: 0.9s"
               >
-                4-year off-road warranty
+                Long-lasting performance with high loading capacity
+              </li>
+              <li
+                class="feature-item animate-on-scroll"
+                style="transition-delay: 0.9s"
+              >
+                Low Rolling Resistance
               </li>
             </ul>
           </div>
         </div>
       </section>
     </div>
+    <script>
+      document.querySelectorAll(".accordion").forEach((accordion) => {
+        accordion.addEventListener("click", function () {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
 
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      });
+    </script>
     <script>
       window.addEventListener("load", () => {
         document.querySelector(".loading").style.display = "none";
